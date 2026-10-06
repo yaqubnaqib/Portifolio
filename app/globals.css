@@ -7,7 +7,6 @@
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 /* Skip to content — keyboard accessibility */
@@ -19,7 +18,7 @@
   padding: 0.75rem 1.25rem;
   border-radius: 0.5rem;
   background: #83c3de;
-  color: #fff;
+  color: #10303f;
   font-weight: 600;
   text-decoration: none;
   transition: top 0.2s ease;
@@ -29,6 +28,26 @@
   top: 1rem;
   outline: 2px solid #2a2a2a;
   outline-offset: 2px;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid #2f6f8a;
+  outline-offset: 2px;
+}
+
+html.dark :focus-visible {
+  outline-color: #add6e8;
+}
+
+html {
+  scroll-padding-top: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -121,7 +140,7 @@ html.dark {
   border-radius: 2px;
   transform: translateY(-50%);
   transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  background-color: #42b3e4;
+  background-color: #1f4f63;
 }
 
 html.dark .dv::before {
@@ -146,7 +165,7 @@ html.dark .dv::before {
 }
 
 .dv:hover .list {
-  color: #42b3e4db;
+  color: #0b2633;
   transform: translateX(0.4rem);
   letter-spacing: 0.02em;
 }
@@ -157,11 +176,7 @@ html.dark .dv:hover .list {
 
 /* Contact section gradient */
 .contact {
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(173, 214, 232, 0.286) 0%
-  );
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(173, 214, 232, 0.286) 0%);
   box-shadow: 0rem -1.5rem 1rem rgba(173, 214, 232, 0.281);
 }
 
@@ -218,22 +233,6 @@ html.dark .skill-icon {
 
 /* Mobile optimizations */
 @media only screen and (max-width: 600px) {
-  .hero-light .hello {
-    color: #add6e8;
-  }
-
-  .hero-dark .hello {
-    color: #2a2a2a;
-  }
-
-  .hero-light .imYaqwb {
-    color: #548aa4;
-  }
-
-  .hero-dark .imYaqwb {
-    color: #548aa4;
-  }
-
   .mobile-spacing {
     bottom: calc(25% + 0.5rem) !important;
   }
@@ -247,21 +246,44 @@ html.dark .skill-icon {
   }
 }
 
-/* Tablet optimizations */
-@media only screen and (min-width: 768px) {
-  .hero-light .hello {
-    color: #aad3e6;
+/* Hero greeting drop-in (CSS only, so the LCP text paints without waiting for JS) */
+@keyframes hello-drop {
+  from {
+    transform: translateY(-100px);
   }
-
-  .hero-dark .hello {
-    color: #4a4a4adc;
+  to {
+    transform: translateY(0);
   }
+}
 
-  .hero-light .imYaqwb {
-    color: #548aa4;
+.hero-hello {
+  animation: hello-drop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Section headings: the large decorative word is generated content, so the
+   heading's text (what crawlers and screen readers get) reads naturally. */
+.section-heading::before {
+  content: attr(data-decoration);
+  content: attr(data-decoration) / "";
+  display: block;
+  padding: 0 0.75rem;
+  font-size: 4.5rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  overflow-wrap: break-word;
+  color: #add6e84f;
+  opacity: 0.6;
+}
+
+@media (min-width: 640px) {
+  .section-heading::before {
+    font-size: 6rem;
   }
+}
 
-  .hero-dark .imYaqwb {
-    color: #548aa4;
+@media (min-width: 1024px) {
+  .section-heading::before {
+    font-size: 8rem;
   }
 }

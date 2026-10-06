@@ -2,11 +2,12 @@
 Name: Yaqub Naqib
 Role: Frontend Developer
 Location: Erbil, Kurdistan Region, Iraq
-Site: https://yaqwb.vercel.app/
+Site: https://yaqubnaqib.vercel.app/
 Email: yaqub.nq@gmail.com
-GitHub: https://github.com/Yaqub-naqeb
+GitHub: https://github.com/Yaqubnaqib
 LinkedIn: https://www.linkedin.com/in/yaqub-naqib-b9894b238/
 
 /* SITE */
 Language: English
 Standards: HTML5, JSON-LD, llms.txt
+Stack: Next.js, React, TypeScript, Tailwind CSS
