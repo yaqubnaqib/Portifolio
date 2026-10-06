@@ -32,6 +32,8 @@ export interface Project {
   image: ProjectImage;
   reverse?: boolean;
   updated: string;
+  /** "At a glance" key facts, shown at the top of the case study. */
+  facts?: Array<{ label: string; value: string }>;
 }
 
 export const PROJECTS: Project[] = [
@@ -41,10 +43,10 @@ export const PROJECTS: Project[] = [
     title: "iZone Iraq",
     tagline: "Multi-brand commerce platform for Iraq's largest Apple retailer",
     summary:
-      "Multi-brand commerce platform (iZone, Apple Zone, OneStore, Mantiqa Altufaha) serving 30,000+ monthly users. I own the TypeScript frontend: one React Router SSR codebase, a shared Tailwind CSS design system, English, Arabic and Kurdish with full RTL, Laravel API integration, checkout and First Iraqi Bank QR payments. Catalogue LCP went from 3.8s to 1.4s.",
-    seoTitle: "iZone Iraq case study: multi-brand React Router commerce",
+      "Multi-brand commerce platform (iZone, Apple Zone, OneStore, Mantiqa Altufaha) serving 60,000+ monthly users. I own the TypeScript frontend: one React Router SSR codebase, a shared Tailwind CSS design system, English, Arabic and Kurdish with full RTL, Laravel API integration, checkout and First Iraqi Bank QR payments. Catalogue LCP went from 3.8s to 1.4s.",
+    seoTitle: "iZone Iraq: React e-commerce frontend case study",
     seoDescription:
-      "How Yaqub Naqib built the TypeScript frontend for iZone Iraq: one React Router SSR codebase for four brands, 30,000+ monthly users, LCP cut from 3.8s to 1.4s.",
+      "How Yaqub Naqib built the TypeScript frontend for iZone Iraq: one React Router SSR codebase for four brands, 60,000+ monthly users, LCP cut from 3.8s to 1.4s.",
     role: "Frontend Developer",
     context: "Full-time, on-site · Erbil, Iraq",
     period: "Apr 2024 – Present",
@@ -74,7 +76,7 @@ export const PROJECTS: Project[] = [
       "Digital Cards (iTunes, Google Play, PlayStation and gaming), IMEI device lookup, live FX rates, community Q&A and in-app customer chat ship on the same platform, gated by server-driven feature flags.",
     ],
     results: [
-      "30,000+ monthly users served from one React Router SSR codebase.",
+      "60,000+ monthly users served from one React Router SSR codebase.",
       "Largest Contentful Paint on catalogue and product routes reduced from 3.8s to 1.4s.",
       "Four brands share one Tailwind CSS design system across English, Arabic and Kurdish.",
     ],
@@ -86,6 +88,15 @@ export const PROJECTS: Project[] = [
       height: 809,
       alt: "iZone Iraq storefront home page with brand shortcuts and quick access to Shop, Digital Cards, Check, Wallet and Bourse",
     },
+    facts: [
+      { label: "Monthly users", value: "60,000+" },
+      { label: "Brands", value: "4 storefronts, one codebase" },
+      { label: "Architecture", value: "React Router SSR" },
+      { label: "Languages", value: "English, Arabic, Kurdish (full RTL)" },
+      { label: "Performance", value: "LCP 3.8s → 1.4s" },
+      { label: "Payments", value: "First Iraqi Bank QR, in-app wallet" },
+      { label: "Maps", value: "Mapbox address capture" },
+    ],
     updated: "2026-10-06",
   },
   {
@@ -95,7 +106,7 @@ export const PROJECTS: Project[] = [
     tagline: "No-code Meta automation SaaS for Facebook, Instagram and WhatsApp",
     summary:
       "Comment and DM automation platform connected to Meta, used by 50+ business pages across Iraq and the Kurdistan Region. I owned the TypeScript / Next.js client: per-post comment automation, a visual Messenger flow builder, an insights dashboard, subscriptions and regional checkout, localised into eight languages with full RTL.",
-    seoTitle: "Botolon case study: Next.js Meta automation SaaS",
+    seoTitle: "Botolon: Next.js SaaS frontend case study",
     seoDescription:
       "How Yaqub Naqib built the Next.js client for Botolon, a Meta comment and DM automation SaaS used by 50+ business pages, in eight languages with full RTL.",
     role: "Frontend Developer",
@@ -139,6 +150,13 @@ export const PROJECTS: Project[] = [
       height: 839,
       alt: "Botolon automation platform landing page",
     },
+    facts: [
+      { label: "Business pages", value: "50+" },
+      { label: "Channels", value: "Facebook, Instagram, WhatsApp" },
+      { label: "Languages", value: "8, incl. Kurdish, Arabic, Farsi (RTL)" },
+      { label: "Payments", value: "FIB, FastPay, card" },
+      { label: "Delivery", value: "Installable PWA" },
+    ],
     updated: "2026-10-06",
   },
   {
@@ -148,7 +166,7 @@ export const PROJECTS: Project[] = [
     tagline: "WhatsApp ordering platform for restaurants in Iraq",
     summary:
       "WhatsApp ordering platform for restaurants in Iraq, live with paying customers. A multilingual bot (English, Arabic, Kurdish) turns chat into structured orders; merchants manage menus and order status from a real-time dashboard, with RTL and Gemini-assisted replies.",
-    seoTitle: "WAOrders case study: WhatsApp ordering for restaurants",
+    seoTitle: "WAOrders: WhatsApp ordering platform case study",
     seoDescription:
       "How Yaqub Naqib designed, built and launched WAOrders, a WhatsApp ordering platform for restaurants in Iraq with a trilingual bot and real-time dashboard.",
     role: "Designer and developer",
@@ -187,6 +205,12 @@ export const PROJECTS: Project[] = [
       alt: "WAOrders landing page with the headline Every chat becomes an order",
     },
     reverse: true,
+    facts: [
+      { label: "Status", value: "Live, first paying restaurants" },
+      { label: "Languages", value: "English, Arabic, Kurdish (RTL)" },
+      { label: "AI", value: "Gemini-assisted replies" },
+      { label: "Messaging", value: "WhatsApp Cloud API" },
+    ],
     updated: "2026-10-06",
   },
   {
@@ -196,7 +220,7 @@ export const PROJECTS: Project[] = [
     tagline: "Travel booking website for an Erbil tour operator",
     summary:
       "Travel booking platform for an Erbil tour operator. I built the responsive frontend and booking-enquiry flow against a Laravel API so visitors can explore trips and send enquiries from any device.",
-    seoTitle: "ErbilianWay case study: Vue.js travel booking website",
+    seoTitle: "ErbilianWay: travel booking website case study",
     seoDescription:
       "How Yaqub Naqib built the responsive Vue.js frontend and booking-enquiry flow for ErbilianWay, a travel booking website for an Erbil tour operator.",
     role: "Frontend Developer Intern",
@@ -245,7 +269,7 @@ export interface SkillGroup {
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     id: "core",
-    title: "Core",
+    title: "Core expertise",
     skills: [
       { name: "React", icon: "react" },
       { name: "TypeScript", icon: "typescript" },
@@ -258,20 +282,25 @@ export const SKILL_GROUPS: SkillGroup[] = [
     ],
   },
   {
-    id: "also-use",
-    title: "Also use",
+    id: "frontend-ecosystem",
+    title: "Frontend ecosystem",
     skills: [
       { name: "Redux", icon: "redux" },
       { name: "Jotai", icon: "jotai" },
       { name: "Zod", icon: "zod" },
       { name: "Radix UI", icon: "radix" },
+      { name: "React Native", icon: "reactNative" },
       { name: "Sass", icon: "sass" },
       { name: "Bootstrap", icon: "bootstrap" },
-      { name: "Vue.js", icon: "vue" },
-      { name: "React Native", icon: "reactNative" },
+    ],
+  },
+  {
+    id: "backend-api",
+    title: "Backend & API integration",
+    skills: [
+      { name: "Laravel API integration", icon: "laravel" },
       { name: "Node.js", icon: "node" },
       { name: "Firebase", icon: "firebase" },
-      { name: "Laravel API integration", icon: "laravel" },
     ],
   },
   {
@@ -285,7 +314,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
 ];
 
-export const WORKING_KNOWLEDGE = ["Django", "Python", "MySQL"];
+export const WORKING_KNOWLEDGE = ["Vue.js", "Python", "Django", "MySQL"];
 
 /** Core stack, used for JSON-LD knowsAbout and llms.txt. */
 export const CORE_STACK = [
@@ -324,7 +353,7 @@ export const EXPERIENCES: Experience[] = [
     meta: "Full-time, on-site · Erbil, Iraq",
     caseStudySlug: "izone-iraq",
     highlights: [
-      "Own the TypeScript frontend for iZone's multi-brand commerce platform (iZone, Apple Zone, OneStore, Mantiqa Altufaha), serving 30,000+ monthly users from one React Router SSR codebase and a shared Tailwind CSS design system.",
+      "Own the TypeScript frontend for iZone's multi-brand commerce platform (iZone, Apple Zone, OneStore, Mantiqa Altufaha), serving 60,000+ monthly users from one React Router SSR codebase and a shared Tailwind CSS design system.",
       "Ship English, Arabic and Kurdish with full RTL and currency-aware catalogue pricing against a Laravel API, so one codebase powers every regional storefront without duplicated UI.",
       "Reduced Largest Contentful Paint on catalogue and product routes from 3.8s to 1.4s with route-level code splitting, below-the-fold lazy loading and product-image preloading.",
       "Built checkout and payments end to end: Mapbox address capture, in-app wallet (top-up and P2P transfer) and First Iraqi Bank QR payments with status polling, session recovery and full error-state coverage.",
@@ -389,7 +418,7 @@ export const FAQ: FaqItem[] = [
   {
     question: "What is his tech stack?",
     answer:
-      "His core stack is React, TypeScript, React Router, Next.js and Tailwind CSS. He also uses Redux Toolkit, Jotai, Zod, Radix UI, Sass, Vue.js, React Native, Node.js, Firebase and Laravel API integration, with Git, GitHub and Figma as everyday tools.",
+      "His core stack is React, TypeScript, React Router, Next.js and Tailwind CSS. Around it he uses Redux Toolkit, Jotai, Zod, Radix UI and React Native, integrates backends through Laravel APIs, Node.js and Firebase, and has working knowledge of Vue.js, Python, Django and MySQL.",
   },
   {
     question: "Where is Yaqub Naqib based?",

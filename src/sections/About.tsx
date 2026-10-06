@@ -48,7 +48,8 @@ export default function About() {
               <Link href="/projects/izone-iraq" className={inlineLink}>
                 iZone Iraq
               </Link>
-              , serving 30,000+ monthly users across four brands. I also built the{" "}
+              , where one React Router SSR codebase powers four commerce brands and 60,000+ monthly
+              users. I also built the{" "}
               <Link href="/projects/botolon" className={inlineLink}>
                 Botolon
               </Link>{" "}

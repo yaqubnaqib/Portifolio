@@ -132,6 +132,29 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </figcaption>
               </figure>
 
+              {project.facts && (
+                <section aria-labelledby="at-a-glance" className="mb-12">
+                  <h2 id="at-a-glance" className={sectionHeading}>
+                    At a glance
+                  </h2>
+                  <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {project.facts.map((fact) => (
+                      <div
+                        key={fact.label}
+                        className="rounded-xl border border-[#E0EFF5] bg-[#F8FBFD] dark:border-[#3a3a3a] dark:bg-[#242424] p-4 sm:p-5"
+                      >
+                        <dt className="text-sm font-medium text-[#4d5a60] dark:text-[#9C9C9C]">
+                          {fact.label}
+                        </dt>
+                        <dd className="mt-1 text-lg font-semibold text-[#1a1a1a] dark:text-white">
+                          {fact.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </section>
+              )}
+
               <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_16rem]">
                 <div className="space-y-12">
                   <section aria-labelledby="problem">

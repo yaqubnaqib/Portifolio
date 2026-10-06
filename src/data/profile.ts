@@ -12,7 +12,7 @@ export const PROFILE = {
   summary:
     "Frontend developer based in Erbil, Kurdistan Region, Iraq. Available for freelance and subcontract projects, collaborations, and full-time roles.",
   /** Third-person bio that search engines and AI assistants can quote as-is. */
-  bio: "Yaqub Naqib is a frontend developer based in Erbil, Kurdistan Region, Iraq, with 3+ years of experience owning production commerce and SaaS frontends in React and TypeScript. He builds server-rendered React Router and Next.js apps, design systems shared across multiple brands, trilingual English, Arabic and Kurdish interfaces with full right-to-left support, and payment and checkout flows integrated with Laravel and Meta platform APIs. He currently owns the TypeScript frontend at iZone Iraq, a multi-brand commerce platform serving 30,000+ monthly users.",
+  bio: "Yaqub Naqib is a frontend developer based in Erbil, Kurdistan Region, Iraq, with 3+ years of experience owning production commerce and SaaS frontends in React and TypeScript. He builds server-rendered React Router and Next.js apps, design systems shared across multiple brands, trilingual English, Arabic and Kurdish interfaces with full right-to-left support, and payment and checkout flows integrated with Laravel and Meta platform APIs. He currently owns the TypeScript frontend at iZone Iraq, a multi-brand commerce platform serving 60,000+ monthly users.",
   availability: "Available for freelance and subcontract projects",
   location: "Erbil, Kurdistan Region, Iraq",
   city: "Erbil",

@@ -93,6 +93,7 @@ export function buildLlmsFullTxt(): string {
       `Live: ${project.liveUrl}`,
       `Role: ${project.role} (${project.context}${project.period ? `, ${project.period}` : ""})`,
       `Stack: ${project.stack.join(", ")}`,
+      ...(project.facts ?? []).map((fact) => `${fact.label}: ${fact.value}`),
       "",
       "Problem:",
       ...project.problem.map((item) => `- ${item}`),

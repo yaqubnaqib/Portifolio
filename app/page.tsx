@@ -16,7 +16,7 @@ import { homeGraph } from "@/lib/structured-data";
 export const dynamic = "force-static";
 
 export const metadata = pageMetadata({
-  title: `${PROFILE.name}, ${PROFILE.headline} | React, TypeScript, React Router`,
+  title: `${PROFILE.name} — Frontend Developer in Erbil, Iraq | React & TypeScript`,
   description: PROFILE.metaDescription,
   path: "/",
   type: "profile",
