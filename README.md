@@ -56,7 +56,7 @@ When you change copy, bump `CONTENT_UPDATED` in `src/lib/site.ts` (and `updated`
 The form posts to `/api/contact`, which validates with zod, rate-limits per IP, checks a honeypot and (optionally) Cloudflare Turnstile, then sends with the first configured provider:
 
 - **Resend:** `RESEND_API_KEY` (+ `CONTACT_FROM_EMAIL` once you verify a domain).
-- **EmailJS (server-side):** `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_PRIVATE_KEY`. In EmailJS → Account → Security, enable _API access from non-browser environments_. Template variables: `{{from_name}}`, `{{from_email}}`, `{{reply_to}}`, `{{message}}`.
+- **EmailJS (server-side):** `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_PRIVATE_KEY`. The legacy `NEXT_PUBLIC_EMAILJS_*` and `REACT_APP_EMAILJS_*` names also work, and the private key is optional unless _Use Private Key_ is on. In EmailJS → Account → Security, enable _API access from non-browser environments_. Template variables: `{{from_name}}`, `{{from_email}}`, `{{reply_to}}`, `{{message}}`.
 
 With no provider configured the form shows a pre-filled `mailto:` link instead. Turnstile (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`) and Upstash rate limiting (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`) switch on when their variables are present.
 

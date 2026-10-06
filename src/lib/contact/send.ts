@@ -9,26 +9,36 @@ type Message = Pick<ContactInput, "name" | "email" | "message">;
 /**
  * Delivers a contact message with whichever provider is configured:
  * 1. Resend (RESEND_API_KEY), or
- * 2. EmailJS REST API from the server (EMAILJS_* incl. private key).
- * All keys are server-only; nothing is exposed to the browser bundle.
+ * 2. EmailJS REST API, called from the server. Reads EMAILJS_* and falls back
+ *    to the legacy NEXT_PUBLIC_EMAILJS_* / REACT_APP_EMAILJS_* names already
+ *    set in Vercel. The private key is optional (needed only if "Use Private
+ *    Key" is on in EmailJS).
+ * Secrets stay on the server; nothing here ships in the browser bundle.
  */
+/** Reads an EmailJS setting under its current name or a legacy prefix. */
+function emailJsEnv(name: string): string | undefined {
+  return (
+    process.env[`EMAILJS_${name}`] ||
+    process.env[`NEXT_PUBLIC_EMAILJS_${name}`] ||
+    process.env[`REACT_APP_EMAILJS_${name}`] ||
+    undefined
+  );
+}
+
 export async function sendContactMessage(message: Message): Promise<DeliveryResult> {
   if (process.env.RESEND_API_KEY) return sendWithResend(process.env.RESEND_API_KEY, message);
 
-  const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY } =
-    process.env;
-  if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY && EMAILJS_PRIVATE_KEY) {
+  const serviceId = emailJsEnv("SERVICE_ID");
+  const templateId = emailJsEnv("TEMPLATE_ID");
+  const publicKey = emailJsEnv("PUBLIC_KEY");
+  if (serviceId && templateId && publicKey) {
     return sendWithEmailJs(
-      {
-        serviceId: EMAILJS_SERVICE_ID,
-        templateId: EMAILJS_TEMPLATE_ID,
-        publicKey: EMAILJS_PUBLIC_KEY,
-        privateKey: EMAILJS_PRIVATE_KEY,
-      },
+      { serviceId, templateId, publicKey, privateKey: emailJsEnv("PRIVATE_KEY") },
       message,
     );
   }
 
+  console.error("Contact form: no email provider configured (RESEND_API_KEY or EMAILJS_*).");
   return "not_configured";
 }
 
@@ -46,8 +56,10 @@ async function sendWithResend(apiKey: string, { name, email, message }: Message)
       }),
       cache: "no-store",
     });
+    if (!response.ok) console.error(`Contact form: Resend responded ${response.status}`);
     return response.ok ? "sent" : "failed";
-  } catch {
+  } catch (error) {
+    console.error("Contact form: Resend request failed", error);
     return "failed";
   }
 }
@@ -56,7 +68,7 @@ interface EmailJsConfig {
   serviceId: string;
   templateId: string;
   publicKey: string;
-  privateKey: string;
+  privateKey?: string;
 }
 
 async function sendWithEmailJs(config: EmailJsConfig, { name, email, message }: Message) {
@@ -68,7 +80,7 @@ async function sendWithEmailJs(config: EmailJsConfig, { name, email, message }: 
         service_id: config.serviceId,
         template_id: config.templateId,
         user_id: config.publicKey,
-        accessToken: config.privateKey,
+        ...(config.privateKey ? { accessToken: config.privateKey } : {}),
         template_params: {
           from_name: name,
           from_email: email,
@@ -78,8 +90,13 @@ async function sendWithEmailJs(config: EmailJsConfig, { name, email, message }: 
       }),
       cache: "no-store",
     });
+    if (!response.ok) {
+      // EmailJS explains failures in plain text, e.g. "API calls are disabled for non-browser applications".
+      console.error(`Contact form: EmailJS responded ${response.status}: ${await response.text()}`);
+    }
     return response.ok ? "sent" : "failed";
-  } catch {
+  } catch (error) {
+    console.error("Contact form: EmailJS request failed", error);
     return "failed";
   }
 }
